@@ -3,14 +3,20 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import WebFont from 'webfontloader';
-import Contendor from './elements/Contenedor';
+// routes
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 // Components
-import EditarGasto from './components/EditarGasto'
-import GastosPorCategoria from './components/GastosPorCategoria'
-import InicioSesion from './components/InicioSesion'
-import ListaDeGastos from './components/ListaDeGastos'
-import RegistroUsuarios from './components/RegistroUsuarios'
+import EditarGasto from './components/EditarGasto';
+import GastosPorCategoria from './components/GastosPorCategoria';
+import InicioSesion from './components/InicioSesion';
+import ListaDeGastos from './components/ListaDeGastos';
+import RegistroUsuarios from './components/RegistroUsuarios';
+// metas
+import { Helmet } from 'react-helmet';
+import favicon from './assets/static/icons/logo.png';
+// elements
+import Contendor from './elements/Contenedor';
+import Fondo from './elements/Fondo';
 
 WebFont.load({
   google: {
@@ -20,18 +26,26 @@ WebFont.load({
 
 const Index = () => {
   return (
-    <BrowserRouter>
-      <Contendor>
-        <Switch>
-          <Route path='/iniciar-sesion' component={InicioSesion} />
-          <Route path='/crear-cuenta' component={RegistroUsuarios} />
-          <Route path='/categorias' component={GastosPorCategoria} />
-          <Route path='/lista' component={ListaDeGastos} />
-          <Route path='/editar/:id' component={EditarGasto} />
-          <Route path='/' component={App} />
-        </Switch>
-      </Contendor>
-    </BrowserRouter>
+    <>
+      <Helmet>
+        <link rel='shortcut icon' href={favicon} type='image/x-icon' />
+      </Helmet>
+
+      <BrowserRouter>
+        <Contendor>
+          <Switch>
+            <Route path='/iniciar-sesion' component={InicioSesion} />
+            <Route path='/crear-cuenta' component={RegistroUsuarios} />
+            <Route path='/categorias' component={GastosPorCategoria} />
+            <Route path='/lista' component={ListaDeGastos} />
+            <Route path='/editar/:id' component={EditarGasto} />
+            <Route path='/' component={App} />
+          </Switch>
+        </Contendor>
+      </BrowserRouter>
+
+      <Fondo />
+    </>
   );
 };
 
