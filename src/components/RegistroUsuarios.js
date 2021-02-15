@@ -7,6 +7,7 @@ import { ReactComponent as SvgLogin } from './../assets/static/icons/registro.sv
 import styled from 'styled-components';
 import { auth } from './../firebase/firebaseConfig';
 import { useHistory } from 'react-router-dom';
+import Alerta from './../elements/Alerta';
 
 const Svg = styled(SvgLogin)`
   width: 100%;
@@ -19,6 +20,8 @@ const RegistroUsuarios = () => {
   const [correo, setCorreo] = useState('');
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
+  const [estadoAlerta, setEstadoAlerta] = useState(false);
+  const [alerta, setAlerta] = useState({});
 
   const handleChange = (e) => {
     console.log(e.target.name);
@@ -39,22 +42,36 @@ const RegistroUsuarios = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setEstadoAlerta(false);
+    setAlerta({});
     console.log(correo, password, password2);
 
     // validacion del lado del cliente
     const expresionRegular = /[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+/;
     if (!expresionRegular.test(correo)) {
-      console.log('Por favor ingresa un correo electronico valido');
+      setEstadoAlerta(true);
+      setAlerta({
+        tipo: 'error',
+        mensaje: 'Introduzca una dirección de correo electrónico válida'
+      })
       return;
     }
 
     if (correo === '' || password === '' || password2 === '') {
-      console.log('Por favor complete todos los datos');
+      setEstadoAlerta(true);
+      setAlerta({
+        tipo: 'error',
+        mensaje: 'Complete todos los datos'
+      })
       return;
     }
 
     if (password !== password2) {
-      console.log('Las contrasenas no coinciden');
+      setEstadoAlerta(true);
+      setAlerta({
+        tipo: 'error',
+        mensaje: 'Las contrasenas no coinciden'
+      })
       return;
     }
 
@@ -62,7 +79,10 @@ const RegistroUsuarios = () => {
       await auth.createUserWithEmailAndPassword(correo, password);
       history.push('/');
     } catch (error) {
-      let mensaje = ''
+
+      setEstadoAlerta(true);
+
+      let mensaje = '';
       switch (error.code) {
         case 'auth/invalid-password':
           mensaje = 'La contraseña tiene que ser de al menos 6 caracteres.';
@@ -78,7 +98,8 @@ const RegistroUsuarios = () => {
           break;
       }
 
-      console.log(mensaje);
+      setAlerta({tipo: 'error', mensaje: mensaje})
+
     }
   };
 
@@ -108,6 +129,8 @@ const RegistroUsuarios = () => {
           </Boton>
         </ContenedorBoton>
       </Formulario>
+
+      <Alerta tipo={alerta.tipo} mensaje={alerta.mensaje} estadoAlerta={estadoAlerta} setEstadoAlerta={setEstadoAlerta} />
     </>
   );
 };
