@@ -17,6 +17,7 @@ import favicon from './assets/static/icons/logo.png';
 // elements
 import Contendor from './elements/Contenedor';
 import Fondo from './elements/Fondo';
+import { AuthProvider } from './contextos/AuthContext';
 
 WebFont.load({
   google: {
@@ -31,6 +32,7 @@ const Index = () => {
         <link rel='shortcut icon' href={favicon} type='image/x-icon' />
       </Helmet>
 
+    <AuthProvider>
       <BrowserRouter>
         <Contendor>
           <Switch>
@@ -43,7 +45,8 @@ const Index = () => {
           </Switch>
         </Contendor>
       </BrowserRouter>
-
+    </AuthProvider>
+    
       <Fondo />
     </>
   );
