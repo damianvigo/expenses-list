@@ -8,12 +8,16 @@ import fromUnixTime from 'date-fns/fromUnixTime';
 import getUnixTime from 'date-fns/getUnixTime';
 import agregarGasto from './../firebase/agregarGasto';
 import { useAuth } from './../contextos/AuthContext';
+import Alerta from './../elements/Alerta';
 
 const FormularioGasto = () => {
   const [inputDescripcion, setInputDescripcion] = useState('');
   const [inputCantidad, setInputCantidad] = useState('');
   const [categoria, setCategoria] = useState('hogar');
   const [fecha, setFecha] = useState(new Date());
+  const [estadoAlerta, setEstadoAlerta] = useState(false);
+  const [alerta, setAlerta] = useState({});
+
   const { usuario } = useAuth();
 
   const handleChange = (e) => {
@@ -30,16 +34,48 @@ const FormularioGasto = () => {
     e.preventDefault();
     let cantidad = parseFloat(inputCantidad).toFixed(2);
 
-    // console.log(getUnixTime(fecha));
-    // console.log(inputDescripcion, inputCantidad, categoria, fecha);
-    // console.log(usuario.uid);
-    agregarGasto({
-      categoria: categoria,
-      descripcion: inputDescripcion,
-      cantidad: cantidad,
-      fecha: getUnixTime(fecha),
-      uidUsuario: usuario.uid
-    });
+    //Compruebo que hay una descripcion y valor
+    if (inputDescripcion !== '' && inputCantidad !== '') {
+      if (cantidad) {
+        agregarGasto({
+          categoria: categoria,
+          descripcion: inputDescripcion,
+          cantidad: cantidad,
+          fecha: getUnixTime(fecha),
+          uidUsuario: usuario.uid,
+        }).then(() => {
+          setCategoria('hogar');
+          setInputDescripcion('');
+          setInputCantidad('');
+          setFecha(new Date());
+
+          setEstadoAlerta(true);
+          setAlerta({
+            tipo: 'exito',
+            mensaje: 'El gasto fue agregado correctamente',
+          });
+        })
+        .catch((error) => {
+          setEstadoAlerta(true);
+          setAlerta({
+            tipo: 'error',
+            mensaje: 'Hubo un problema al intentar agregar tu gasto',
+          });
+        })
+      } else {
+        setEstadoAlerta(true);
+        setAlerta({
+          tipo: 'error',
+          mensaje: 'El valor que ingresaste no es correcto',
+        });
+      }
+    } else {
+      setEstadoAlerta(true);
+      setAlerta({
+        tipo: 'error',
+        mensaje: 'Por favor completa todos los campos',
+      });
+    }
   };
 
   return (
@@ -66,6 +102,7 @@ const FormularioGasto = () => {
           Agregar Gasto <IconoPlus />
         </Boton>
       </ContenedorBoton>
+      <Alerta tipo={alerta.tipo} mensaje={alerta.mensaje} estadoAlerta={estadoAlerta} setEstadoAlerta={setEstadoAlerta} />
     </Formulario>
   );
 };
