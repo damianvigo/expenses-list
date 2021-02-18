@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Contenedor = styled.div`
+const Contenedor = styled.main`
     background: #fff;
     width: 90%;
     max-width: 70rem; /*1110px*/

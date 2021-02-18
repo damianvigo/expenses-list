@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Header = styled.div`
+const Header = styled.header`
   width: 100%;
   padding: 2.5rem; /* 40px */
   display: flex;
