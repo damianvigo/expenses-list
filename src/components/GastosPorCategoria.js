@@ -4,6 +4,7 @@ import { Header, Titulo } from './../elements/Header';
 import { Helmet } from 'react-helmet';
 // components
 import BtnRegresar from './../elements/BtnRegresar';
+import BarraTotalGastado from './BarraTotalGastado';
 
 const GastosPorCategoria = () => {
   return (
@@ -13,9 +14,12 @@ const GastosPorCategoria = () => {
       </Helmet>
 
       <Header>
-          <BtnRegresar ruta={'/lista'} />
+       {/*   ruta={'/lista'} */}
+          <BtnRegresar  />
           <Titulo>Gastos por categoria</Titulo>
       </Header>
+
+      <BarraTotalGastado />
     </>
   );
 };
