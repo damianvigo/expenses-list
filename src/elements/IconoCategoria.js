@@ -9,8 +9,8 @@ import { ReactComponent as IconoRopa } from './../assets/static/icons/cat_ropa.s
 import { ReactComponent as IconoSaludEHigiene } from './../assets/static/icons/cat_salud-e-higiene.svg';
 import { ReactComponent as IconoTransporte } from './../assets/static/icons/cat_transporte.svg';
 
-const IconoCategoria = ({ nombre }) => {
-  switch (nombre) {
+const IconoCategoria = ({ id }) => {
+  switch (id) {
     case 'comida':
       return <IconoComida />;
     case 'compras':

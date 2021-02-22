@@ -96,13 +96,13 @@ const Fecha = styled.div`
     display: inline-block;
     margin: 1.25rem 0; /* 20px */
  
-    @media (max-width: 50rem) { /* 80px */
+    @media (max-width: 50rem) { /* 800px */
         width: 100%;
     }
 `;
  
 const ContenedorBotones = styled.div`
-    @media (max-width: 50rem) { /* 80px */
+    @media (max-width: 50rem) { /* 800px */
         justify-content: flex-end;
     }
 `;

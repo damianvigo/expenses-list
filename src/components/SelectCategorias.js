@@ -32,7 +32,7 @@ const SelectCategorias = ({ categoria, setCategoria}) => {
         {categorias.map((categoria) => {
           return (
             <Opcion data-valor={categoria.id} key={categoria.id} onClick={handleClick}>
-            <IconoCategoria nombre={categoria.id} />
+            <IconoCategoria id={categoria.id} />
             {categoria.texto}</Opcion>
           )
         })}
