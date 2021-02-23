@@ -19,7 +19,7 @@ const FormularioGasto = () => {
   const [alerta, setAlerta] = useState({});
 
   const { usuario } = useAuth();
-
+  
   const handleChange = (e) => {
     if (e.target.name === 'descripcion') {
       setInputDescripcion(e.target.value);
@@ -28,7 +28,7 @@ const FormularioGasto = () => {
     }
   };
 
-  // console.log(fecha);
+  // console.log(getUnixTime(fecha));
 
   const handleSubmit = (e) => {
     e.preventDefault();

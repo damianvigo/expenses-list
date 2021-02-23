@@ -30,10 +30,9 @@ import { format, fromUnixTime } from 'date-fns';
 import { es } from 'date-fns/locale';
 
 const ListaDeGastos = () => {
-  const [gastos] = useObtenerGastos();
-  console.log(gastos);
+  const [gastos, obtenerMasGastos, hayMasPorCargar] = useObtenerGastos();
 
-  /*   const formatearFecha = (fecha) => {
+    const formatearFecha = (fecha) => {
     return format(fromUnixTime(fecha), "dd 'de' MMMM 'de' yyyy", {locale: es})
   }
 
@@ -51,7 +50,7 @@ const ListaDeGastos = () => {
       }
    
     }
-  } */
+  }
 
   return (
     <>
@@ -68,10 +67,10 @@ const ListaDeGastos = () => {
         {gastos.map((gasto, index) => {
           return (
             <div key={gasto.id}>
-              {/*     {!fechaEsIgual(gastos, index, gasto) && <Fecha>{formatearFecha(gasto.fecha)}</Fecha>} */}
+                  {!fechaEsIgual(gastos, index, gasto) && <Fecha>{formatearFecha(gasto.fecha)}</Fecha>}
               <ElementoLista key={gasto.id}>
                 <Categoria>
-                  {/* <IconoCategoria id={gasto.categoria} /> */}
+                  <IconoCategoria id={gasto.categoria} />
                   {gasto.categoria}
                 </Categoria>
 
@@ -91,10 +90,11 @@ const ListaDeGastos = () => {
             </div>
           );
         })}
-
+        {hayMasPorCargar &&
         <ContenedorBotonCentral>
-          <BotonCargarMas>Cargar más</BotonCargarMas>
+          <BotonCargarMas onClick={() => obtenerMasGastos()}>Cargar más</BotonCargarMas>
         </ContenedorBotonCentral>
+        }
 
         {gastos.length === 0 && (
           <ContenedorSubtitulo>
