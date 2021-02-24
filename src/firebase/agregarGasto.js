@@ -5,7 +5,7 @@ const agregarGasto = ({ categoria, fecha, descripcion, cantidad, uidUsuario }) =
     categoria,
     fecha,
     descripcion,
-    cantidad,
+    cantidad: Number(cantidad),
     uidUsuario
   });
 };
