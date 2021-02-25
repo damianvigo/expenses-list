@@ -19,5 +19,5 @@ const useObtenerGasto = (id) => {
 
   return [gasto];
 }
- 
+
 export default useObtenerGasto;

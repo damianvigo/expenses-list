@@ -12,7 +12,7 @@ import useObtenerGasto from './../hooks/useObtenerGasto';
 const EditarGasto = () => {
   const { id } = useParams();
  const [ gasto ] = useObtenerGasto(id);
- console.log(gasto);
+//  console.log(gasto);
 
   return ( 
     <>
@@ -22,11 +22,11 @@ const EditarGasto = () => {
 
     <Header>
      {/*   ruta={'/lista'} */}
-        <BtnRegresar  />
+        <BtnRegresar ruta='/lista' />
         <Titulo>Editar Gasto</Titulo>
     </Header>
 
-    <FormularioGasto />
+    <FormularioGasto gasto={gasto} />
 
     <BarraTotalGastado />
   </>

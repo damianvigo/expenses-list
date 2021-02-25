@@ -8,7 +8,7 @@ const useObtenerGastos = () => {
   const [ultimoGasto, setUltimoGasto] = useState(null);
   const [hayMasPorCargar, setHayMasPorCargar] = useState(false);
 
-  console.log(gastos)
+  // console.log(gastos)
 
   const obtenerMasGastos = () => {
     db.collection('gastos')
