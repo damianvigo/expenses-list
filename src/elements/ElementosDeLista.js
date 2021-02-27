@@ -55,7 +55,7 @@ const Categoria = styled.div`
     text-transform: uppercase;
     display: flex;
     align-items: center;
-    
+
     svg {
         width: 3.12rem; /* 50px */
         height: auto;
@@ -63,7 +63,7 @@ const Categoria = styled.div`
         border-radius: 0.62rem; /* 10px */
     }
  
-    @media (max-width: 50rem) { /* 80px */
+    @media (max-width: 50rem) { /* 800px */
         font-size: 1.12rem;
     }
 `;
@@ -82,7 +82,7 @@ const Valor = styled.div`
     font-weight: 700;
     justify-content: flex-end;
  
-    @media (max-width: 50rem) { /* 80px */
+    @media (max-width: 50rem) { /* 800px */
         justify-content: flex-start;
     }
 `;
