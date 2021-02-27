@@ -19,6 +19,7 @@ import Contendor from './elements/Contenedor';
 import Fondo from './elements/Fondo';
 import { AuthProvider } from './contextos/AuthContext';
 import RutaPrivada from './components/RutaPrivada';
+import { TotalGastadoProvider } from './contextos/TotalGastadoEnElMesContext';
 
 WebFont.load({
   google: {
@@ -33,35 +34,37 @@ const Index = () => {
         <link rel='shortcut icon' href={favicon} type='image/x-icon' />
       </Helmet>
 
-    <AuthProvider>
-      <BrowserRouter>
-        <Contendor>
-          <Switch>
-            <Route path='/iniciar-sesion' component={InicioSesion} />
-            <Route path='/crear-cuenta' component={RegistroUsuarios} />
+      <AuthProvider>
+        <TotalGastadoProvider>
+          <BrowserRouter>
+            <Contendor>
+              <Switch>
+                <Route path='/iniciar-sesion' component={InicioSesion} />
+                <Route path='/crear-cuenta' component={RegistroUsuarios} />
 
-            <RutaPrivada path='/categorias'>
-                <GastosPorCategoria />
-            </RutaPrivada>
-            <RutaPrivada path='/lista'>
-                <ListaDeGastos />
-            </RutaPrivada>
-            <RutaPrivada path='/editar/:id'>
-                <EditarGasto />
-            </RutaPrivada>
-            <RutaPrivada path='/'>
-                <App />
-            </RutaPrivada>
+                <RutaPrivada path='/categorias'>
+                  <GastosPorCategoria />
+                </RutaPrivada>
+                <RutaPrivada path='/lista'>
+                  <ListaDeGastos />
+                </RutaPrivada>
+                <RutaPrivada path='/editar/:id'>
+                  <EditarGasto />
+                </RutaPrivada>
+                <RutaPrivada path='/'>
+                  <App />
+                </RutaPrivada>
 
-            {/* <Route path='/categorias' component={GastosPorCategoria} /> */}
-            {/* <Route path='/lista' component={ListaDeGastos} /> */}
-            {/* <Route path='/editar/:id' component={EditarGasto} /> */}
-            {/* <Route path='/' component={App} /> */}
-          </Switch>
-        </Contendor>
-      </BrowserRouter>
-    </AuthProvider>
-    
+                {/* <Route path='/categorias' component={GastosPorCategoria} /> */}
+                {/* <Route path='/lista' component={ListaDeGastos} /> */}
+                {/* <Route path='/editar/:id' component={EditarGasto} /> */}
+                {/* <Route path='/' component={App} /> */}
+              </Switch>
+            </Contendor>
+          </BrowserRouter>
+        </TotalGastadoProvider>
+      </AuthProvider>
+
       <Fondo />
     </>
   );
