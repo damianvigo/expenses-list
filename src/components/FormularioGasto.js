@@ -37,9 +37,9 @@ const FormularioGasto = ({ gasto }) => {
     if(gasto) {
       if(gasto.data().uidUsuario === usuario.uid) {
         setCategoria(gasto.data().categoria);
-        setFecha(fromUnixTime(gasto.data().fecha))
-        setInputDescripcion(gasto.data().descripcion)
-        setInputCantidad(gasto.data().cantidad)
+        setFecha(fromUnixTime(gasto.data().fecha));
+        setInputDescripcion(gasto.data().descripcion);
+        setInputCantidad(gasto.data().cantidad);
       } else {
         history.push('/lista');
       }
