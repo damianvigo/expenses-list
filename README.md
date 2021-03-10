@@ -1,2 +1,2 @@
 # expenses-list
-simple webapp about personal expenses
+webapp about personal expenses with reactjs
