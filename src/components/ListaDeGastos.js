@@ -32,7 +32,7 @@ import borrarGasto from './../firebase/borrarGasto';
 
 const ListaDeGastos = () => {
   const [gastos, obtenerMasGastos, hayMasPorCargar] = useObtenerGastos();
-  console.log(gastos)
+  // console.log(gastos)
 
     const formatearFecha = (fecha) => {
     return format(fromUnixTime(fecha), "dd 'de' MMMM 'de' yyyy", {locale: es})

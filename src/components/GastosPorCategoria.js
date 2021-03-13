@@ -12,7 +12,7 @@ import convertirAMoneda from './../functions/convertirAMoneda';
 
 const GastosPorCategoria = () => {
  const gastosPorCategoria = useObtenerGastosDelMesPorCategoria();
-  console.log(gastosPorCategoria);
+  // console.log(gastosPorCategoria);
 
   return (
     <>

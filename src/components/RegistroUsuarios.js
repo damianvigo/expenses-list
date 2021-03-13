@@ -44,7 +44,7 @@ const RegistroUsuarios = () => {
     e.preventDefault();
     setEstadoAlerta(false);
     setAlerta({});
-    console.log(correo, password, password2);
+    // console.log(correo, password, password2);
 
     // validacion del lado del cliente
     const expresionRegular = /[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+/;
