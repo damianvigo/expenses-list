@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Header, Titulo, ContenedorHeader } from './../elements/Header';
 import Boton from './../elements/Boton';
-import { Formulario, Input, ContenedorBoton } from './../elements/ElementosDeFormulario';
+import {
+  Formulario,
+  Input,
+  ContenedorBoton,
+} from './../elements/ElementosDeFormulario';
 import { ReactComponent as SvgLogin } from './../assets/static/icons/login.svg';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
@@ -70,7 +74,7 @@ const InicioSesion = () => {
           mensaje = 'La contraseña no es correcta';
           break;
         case 'auth/user-not-found':
-          mensaje = 'No se encontro ninguna cuenta con este correo electrónico'
+          mensaje = 'No se encontro ninguna cuenta con este correo electrónico';
         default:
           mensaje = 'Hubo un error al intentar crear la cuenta.';
           break;
@@ -90,23 +94,43 @@ const InicioSesion = () => {
         <ContenedorHeader>
           <Titulo>Iniciar Sesión</Titulo>
           <div>
-            <Boton to='/crear-cuenta'>Registrarse</Boton>
+            <Boton w100 to="/crear-cuenta">
+              Registrarse
+            </Boton>
           </div>
         </ContenedorHeader>
       </Header>
 
       <Formulario onSubmit={handleSubmit}>
         <Svg />
-        <Input type='email' name='email' placeholder='Tu Correo' autoFocus value={correo} onChange={handleChange} />
-        <Input type='password' name='password' placeholder='Tu Contraseña' value={password} onChange={handleChange} />
+        <Input
+          type="email"
+          name="email"
+          placeholder="Tu Correo"
+          autoFocus
+          value={correo}
+          onChange={handleChange}
+        />
+        <Input
+          type="password"
+          name="password"
+          placeholder="Tu Contraseña"
+          value={password}
+          onChange={handleChange}
+        />
         <ContenedorBoton>
-          <Boton as='button' primario type='submit'>
+          <Boton as="button" primario type="submit">
             Iniciar Sesión
           </Boton>
         </ContenedorBoton>
       </Formulario>
 
-      <Alerta tipo={alerta.tipo} mensaje={alerta.mensaje} estadoAlerta={estadoAlerta} setEstadoAlerta={setEstadoAlerta} />
+      <Alerta
+        tipo={alerta.tipo}
+        mensaje={alerta.mensaje}
+        estadoAlerta={estadoAlerta}
+        setEstadoAlerta={setEstadoAlerta}
+      />
     </>
   );
 };

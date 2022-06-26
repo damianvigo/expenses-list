@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Header, Titulo, ContenedorHeader } from './../elements/Header';
 import Boton from './../elements/Boton';
-import { Formulario, Input, ContenedorBoton } from './../elements/ElementosDeFormulario';
+import {
+  Formulario,
+  Input,
+  ContenedorBoton,
+} from './../elements/ElementosDeFormulario';
 import { ReactComponent as SvgLogin } from './../assets/static/icons/registro.svg';
 import styled from 'styled-components';
 import { auth } from './../firebase/firebaseConfig';
@@ -52,8 +56,8 @@ const RegistroUsuarios = () => {
       setEstadoAlerta(true);
       setAlerta({
         tipo: 'error',
-        mensaje: 'Introduzca una dirección de correo electrónico válida'
-      })
+        mensaje: 'Introduzca una dirección de correo electrónico válida',
+      });
       return;
     }
 
@@ -61,8 +65,8 @@ const RegistroUsuarios = () => {
       setEstadoAlerta(true);
       setAlerta({
         tipo: 'error',
-        mensaje: 'Complete todos los datos'
-      })
+        mensaje: 'Complete todos los datos',
+      });
       return;
     }
 
@@ -70,8 +74,8 @@ const RegistroUsuarios = () => {
       setEstadoAlerta(true);
       setAlerta({
         tipo: 'error',
-        mensaje: 'Las contrasenas no coinciden'
-      })
+        mensaje: 'Las contrasenas no coinciden',
+      });
       return;
     }
 
@@ -79,7 +83,6 @@ const RegistroUsuarios = () => {
       await auth.createUserWithEmailAndPassword(correo, password);
       history.push('/');
     } catch (error) {
-
       setEstadoAlerta(true);
 
       let mensaje = '';
@@ -88,7 +91,8 @@ const RegistroUsuarios = () => {
           mensaje = 'La contraseña tiene que ser de al menos 6 caracteres.';
           break;
         case 'auth/email-already-in-use':
-          mensaje = 'Ya existe una cuenta con el correo electrónico proporcionado.';
+          mensaje =
+            'Ya existe una cuenta con el correo electrónico proporcionado.';
           break;
         case 'auth/invalid-email':
           mensaje = 'El correo electrónico no es válido.';
@@ -98,8 +102,7 @@ const RegistroUsuarios = () => {
           break;
       }
 
-      setAlerta({tipo: 'error', mensaje: mensaje})
-
+      setAlerta({ tipo: 'error', mensaje: mensaje });
     }
   };
 
@@ -113,24 +116,48 @@ const RegistroUsuarios = () => {
         <ContenedorHeader>
           <Titulo>Crear Cuenta</Titulo>
           <div>
-            <Boton to='/iniciar-sesion'>Iniciar Sesion</Boton>
+            <Boton to="/iniciar-sesion">Iniciar Sesion</Boton>
           </div>
         </ContenedorHeader>
       </Header>
 
       <Formulario onSubmit={handleSubmit}>
         <Svg />
-        <Input type='email' name='email' placeholder='Tu Correo' autoFocus value={correo} onChange={handleChange} />
-        <Input type='password' name='password' placeholder='Tu Contraseña' value={password} onChange={handleChange} />
-        <Input type='password' name='password2' placeholder='Repetir la Contraseña' value={password2} onChange={handleChange} />
+        <Input
+          type="email"
+          name="email"
+          placeholder="Tu Correo"
+          autoFocus
+          value={correo}
+          onChange={handleChange}
+        />
+        <Input
+          type="password"
+          name="password"
+          placeholder="Tu Contraseña"
+          value={password}
+          onChange={handleChange}
+        />
+        <Input
+          type="password"
+          name="password2"
+          placeholder="Repetir la Contraseña"
+          value={password2}
+          onChange={handleChange}
+        />
         <ContenedorBoton>
-          <Boton as='button' primario type='submit'>
+          <Boton w100 as="button" primario type="submit">
             Crear Cuenta
           </Boton>
         </ContenedorBoton>
       </Formulario>
 
-      <Alerta tipo={alerta.tipo} mensaje={alerta.mensaje} estadoAlerta={estadoAlerta} setEstadoAlerta={setEstadoAlerta} />
+      <Alerta
+        tipo={alerta.tipo}
+        mensaje={alerta.mensaje}
+        estadoAlerta={estadoAlerta}
+        setEstadoAlerta={setEstadoAlerta}
+      />
     </>
   );
 };

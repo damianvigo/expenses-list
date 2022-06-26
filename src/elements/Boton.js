@@ -26,11 +26,11 @@ const Boton = styled(Link)`
   }
 
   @media (max-width: 30rem) {
-    width: 40%;
+    width: ${({ w100 }) => (w100 ? '100%' : '40%')}; /* 250px */
     font-size: 1rem;
-    padding: .8rem;
+    padding: 0.8rem;
     text-align: center;
-    }
+  }
 `;
 
 export default Boton;
